@@ -1,0 +1,32 @@
+### 題目
+
+將字符串轉換爲短線連接格式。 短線連接格式是小寫單詞全部小寫並以破折號分隔。
+
+### 解法
+
+```js
+
+function spinalCase(str) {
+  let arr = Array.from(str)
+  let tmpArr = []
+  arr.forEach(word => {
+    if (/[A-Z]/.test(word)) {
+      tmpArr.push('*')
+      tmpArr.push(word.toLowerCase())
+    } else if (/[a-z]/.test(word)) {
+      tmpArr.push(word)
+    } else {
+      tmpArr.push('-')
+    }
+  })
+
+  let result = tmpArr.map((word, idx) => {
+    if (word !== '*') return word
+    if (tmpArr[idx - 1] === '-' || idx === 0) return ''
+    return '-'
+  })
+  console.log(result.join(''))
+  return result.join('');
+}
+
+```
