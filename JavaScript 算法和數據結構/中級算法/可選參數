@@ -1,0 +1,34 @@
+
+### 題目
+
+創建一個將兩個參數相加的函數。 如果只提供了一個參數，則返回一個需要一個參數並返回總和的函數。
+
+比如，addTogether(2, 3) 應該返回 5。 而 addTogether(2) 應該返回一個函數。
+
+調用這個返回的函數，爲它傳入一個值，會返回兩個值的總和：
+
+var sumTwoAnd = addTogether(2);
+sumTwoAnd(3) 應返回 5。
+
+如果任一參數不是有效數字，則返回 undefined。
+
+### 解法
+
+```js
+
+const isNumber = (num) =>
+  typeof (num) !== "number"
+
+function addTogether(...num) {
+
+  let [first, second] = num
+
+  if (isNumber(first)) return undefined
+
+  if (num.length === 1) { return (second) => addTogether(first,second)}
+
+  if (isNumber(second)) return undefined
+  return first + second
+}
+
+```
